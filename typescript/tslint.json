@@ -1,0 +1,21 @@
+{
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "arrow-return-shorthand": true,
+    "await-promise": true,
+    "class-name": true,
+    "forin": true,
+    "import-name": false,
+    "import-spacing": true,
+    "max-line-length": [
+      true,
+      100
+    ],
+    "no-any": true,
+    "no-duplicate-super": true,
+    "no-for-in-array": true,
+    "no-duplicate-variable": true,
+    "no-increment-decrement": false,
+    "variable-name": false
+  }
+}

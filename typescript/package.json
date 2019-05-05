@@ -1,0 +1,32 @@
+{
+  "name": "ts-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KITSEPAMAnnaMaier/mp-16.10.git"
+  },
+  "author": "Anna Maier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KITSEPAMAnnaMaier/mp-16.10/issues"
+  },
+  "homepage": "https://github.com/KITSEPAMAnnaMaier/mp-16.10#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.4.5",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
