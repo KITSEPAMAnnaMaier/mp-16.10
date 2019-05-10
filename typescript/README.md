@@ -8,7 +8,8 @@ npm start
 These commands will setup you live reloading development server.
 
 ```
-Implement the interface for (any) DTO (Data Transfer Object) from the back-end and create a model based on it
+Implement the interface for (any) DTO (Data Transfer Object) from the back-end
+and create a model based on it
 ```
 
 Take a look at `book/book.interface.ts`. A class `Book` in `book/book.ts` was created based on `IBook` interface.
