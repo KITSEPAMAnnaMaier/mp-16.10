@@ -1,4 +1,8 @@
-<div *ngFor="let post of posts$ | async">
+<button (click)="getPosts()">Get Posts!</button>
+<input *ngIf="posts?.length"
+       (input)="searchPosts($event.target.value)"
+       placeholder="Search a post..." />
+<div *ngFor="let post of filteredPosts">
   <h2>{{ post.title }}</h2>
   <p>{{ post.body }}</p>
 </div>
