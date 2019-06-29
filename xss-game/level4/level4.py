@@ -7,6 +7,16 @@ def render(tpl_path, context = {}):
     return jinja2.Environment(
         loader=jinja2.FileSystemLoader(path or './')
     ).get_template(filename).render(context)
+ 
+def is_digit(string):
+  if string.isdigit():
+    return True
+  else:
+    try:
+      float(string)
+      return True
+    except ValueError:
+      return False
 
 class MainPage(webapp.RequestHandler):
  
@@ -20,7 +30,9 @@ class MainPage(webapp.RequestHandler):
     else:
       # Show the results page
       timer= self.request.get('timer', 0)
-      self.response.out.write(render('timer.html', { 'timer' : timer }))
+      if is_digit(timer):
+        self.response.out.write(render('timer.html', { 'timer' : timer }))
+      else: return
      
     return
  

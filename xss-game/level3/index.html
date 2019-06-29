@@ -14,6 +14,7 @@
       function chooseTab(num) {
         // Dynamically load the appropriate image.
         var html = "Image " + parseInt(num) + "<br>";
+        num = num.replace(/onerror/g, '');
         html += "<img src='https://xss-game.appspot.com/static/level3/cloud" + num + ".jpg' />";
         $('#tabContent').html(html);
  
