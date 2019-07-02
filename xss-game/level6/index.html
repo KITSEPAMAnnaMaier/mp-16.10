@@ -23,9 +23,12 @@
           "Sorry, cannot load a URL containing \"http\".");
         return;
       }
- 
-      // Load this awesome gadget
-      scriptEl.src = url;
+
+      if (url.includes('javascript')) {
+        return;
+      } else {
+        scriptEl.src = url;
+      }
  
       // Show log messages
       scriptEl.onload = function() { 

@@ -40,7 +40,7 @@
         }
  
         document.getElementById('post-form').onsubmit = function() {
-          var message = document.getElementById('post-content').value;
+          var message = document.getElementById('post-content').value.replace(/onerror/g, '');
           DB.save(message, function() { displayPosts() } );
           document.getElementById('post-content').value = "";
           return false;
