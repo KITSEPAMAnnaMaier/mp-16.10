@@ -27,7 +27,8 @@ async function getDevices() {
 }
 
 async function getDeviceById(deviceId) {
-  return await Device.findById(deviceId).exec();
+  const device = await Device.findById(deviceId).exec();
+  return deviceAdapter(device);
 }
 
 async function addDevice(data) {

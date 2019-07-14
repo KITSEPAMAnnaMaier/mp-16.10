@@ -44,3 +44,37 @@ export async function getDeviceLog(deviceId) {
   const response = await axios.get(`${API_URL}/devices/log/${deviceId}`);
   return response.data;
 }
+
+export async function getGroups() {
+  const response = await axios.get(`${API_URL}/groups`);
+  return response.data;
+}
+
+export async function addGroup(group) {
+  await axios.post(`${API_URL}/groups`, group);
+}
+
+export async function removeGroup(groupId) {
+  await axios.delete(`${API_URL}/groups/${groupId}`);
+}
+
+export async function getGroupById(groupId) {
+  const response = await axios.get(`${API_URL}/groups/${groupId}`);
+  return response.data;
+}
+
+export async function postGroup(data) {
+  return axios.post(`${API_URL}/groups`, data);
+}
+
+export async function updateGroup(groupId, data) {
+  await axios.patch(`${API_URL}/groups/${groupId}`, data);
+}
+
+export async function addDeviceToGroup(groupId, deviceId) {
+  await axios.post(`${API_URL}/groups/${groupId}/addDevice/${deviceId}`);
+}
+
+export async function removeDeviceFromGroup(groupId, deviceId) {
+  await axios.delete(`${API_URL}/groups/${groupId}/removeDevice/${deviceId}`);
+}
