@@ -40,4 +40,29 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.get("/log/:id", async (req, res) => {
+  const { id } = req.params;
+  const device = await devicesService.getDeviceById(id);
+
+  if (device) {
+    res.json(device.log);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+router.patch("/log/:id", async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  const { address, port, state } = await devicesService.getDeviceById(id);
+
+  try {
+    await devicesService.updateDevice(id, data);
+    await devicesService.updateDeviceState(address, port, state);
+    res.sendStatus(200);
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

@@ -4,7 +4,8 @@ const Device = mongoose.model("Device", {
   name: String,
   address: String,
   port: Number,
-  state: String
+  state: String,
+  log: Array
 });
 
 module.exports = Device;

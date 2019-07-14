@@ -6,34 +6,18 @@ module.exports = {
   getDeviceById,
   addDevice,
   removeDevice,
-  updateDevice
+  updateDevice,
+  updateDeviceState
 };
 
-let index = 2;
-let devices = {
-  device1: {
-    id: "device1",
-    name: "Device #1",
-    address: "192.168.1.50",
-    port: 90,
-    state: "on"
-  },
-  device2: {
-    id: "device2",
-    name: "Device #2",
-    address: "192.168.1.60",
-    port: 80,
-    state: "off"
-  }
-};
-
-function deviceAdapter({ _id, name, address, port, state }) {
+function deviceAdapter({ _id, name, address, port, state, log }) {
   return {
     id: _id,
     name,
     address,
     port,
-    state
+    state,
+    log
   };
 }
 
@@ -65,13 +49,21 @@ async function removeDevice(deviceId) {
 }
 
 async function updateDevice(deviceId, data) {
-  const device = await Device.findById(deviceId).exec();
   if (!data) {
     return null;
   }
   if (data.state) {
-    await updateDeviceState(device.address, device.port, device.state);
+    const device = await getDeviceById(deviceId);
+
+    data.log = [
+      ...(Array.isArray(device.log) ? device.log : []),
+      {
+        action: data.state,
+        date: new Date().toLocaleString()
+      }
+    ];
   }
+
   await Device.findByIdAndUpdate(deviceId, data).exec();
 }
 

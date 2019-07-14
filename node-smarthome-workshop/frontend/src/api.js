@@ -24,27 +24,23 @@ export async function updateDevice(deviceId, data) {
   await axios.patch(`${API_URL}/devices/${deviceId}`, data);
 }
 
+export async function updateDeviceState(deviceId, data) {
+  await axios.patch(`${API_URL}/devices/log/${deviceId}`, data);
+}
+
 export async function switchOn(deviceId) {
-  await updateDevice(deviceId, {
+  await updateDeviceState(deviceId, {
     state: "on"
   });
 }
 
 export async function switchOff(deviceId) {
-  await updateDevice(deviceId, {
+  await updateDeviceState(deviceId, {
     state: "off"
   });
 }
 
 export async function getDeviceLog(deviceId) {
-  return [
-    {
-      date: "2018-31-08 16:00:00",
-      action: "On"
-    },
-    {
-      date: "2018-31-08 17:00:00",
-      action: "Off"
-    }
-  ];
+  const response = await axios.get(`${API_URL}/devices/log/${deviceId}`);
+  return response.data;
 }
