@@ -8,6 +8,7 @@ import DeviceLog from './scenes/DeviceLog';
 import Groups from './scenes/Groups';
 import GroupAdd from './scenes/GroupAdd';
 import GroupEdit from './scenes/GroupEdit';
+import GroupLog from './scenes/GroupLog';
 
 class App extends Component {
     render() {
@@ -26,6 +27,7 @@ class App extends Component {
                         <Route path="/groups" exact component={Groups} />
                         <Route path="/groups/add" component={GroupAdd} />
                         <Route path="/groups/edit/:id" component={GroupEdit} />
+                        <Route path="/groups/log/:id" component={GroupLog} />
                         <Redirect from="/" to="/devices" />
                     </Switch>
                 </div>

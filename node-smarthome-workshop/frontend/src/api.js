@@ -78,3 +78,24 @@ export async function addDeviceToGroup(groupId, deviceId) {
 export async function removeDeviceFromGroup(groupId, deviceId) {
   await axios.delete(`${API_URL}/groups/${groupId}/removeDevice/${deviceId}`);
 }
+
+export async function updateGroupState(groupId, data) {
+  await axios.patch(`${API_URL}/groups/log/${groupId}`, data);
+}
+
+export async function switchOnGroup(groupId) {
+  await updateGroupState(groupId, {
+    state: "on"
+  });
+}
+
+export async function switchOffGroup(groupId) {
+  await updateGroupState(groupId, {
+    state: "off"
+  });
+}
+
+export async function getGroupLog(groupId) {
+  const response = await axios.get(`${API_URL}/groups/log/${groupId}`);
+  return response.data;
+}

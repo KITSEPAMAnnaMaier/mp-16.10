@@ -52,4 +52,27 @@ router.delete("/:groupId/removeDevice/:deviceId", async (req, res) => {
   res.sendStatus(200);
 });
 
+router.get("/log/:id", async (req, res) => {
+  const { id } = req.params;
+  const group = await groupsService.getGroupById(id);
+
+  if (group) {
+    res.json(group.log);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+router.patch("/log/:id", async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  try {
+    await groupsService.updateGroup(id, data);
+    res.sendStatus(200);
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

@@ -54,6 +54,21 @@ async function updateGroup(groupId, data) {
   if (!data) {
     return null;
   }
+  if (data.state) {
+    const group = await getGroupById(groupId);
+    group.devices.forEach(
+      async device => await devicesService.updateDevice(device.id, data)
+    );
+
+    data.log = [
+      ...(Array.isArray(group.log) ? group.log : []),
+      {
+        action: data.state,
+        date: new Date().toLocaleString()
+      }
+    ];
+  }
+
   await Group.findByIdAndUpdate(groupId, data).exec();
 }
 
