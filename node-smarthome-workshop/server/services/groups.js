@@ -57,7 +57,7 @@ async function updateGroup(groupId, data) {
   if (data.state) {
     const group = await getGroupById(groupId);
     group.devices.forEach(
-      async device => await devicesService.updateDevice(device.id, data)
+      async device => await devicesService.updateDevice(device.id, data.state)
     );
 
     data.log = [
