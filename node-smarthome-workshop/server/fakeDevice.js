@@ -12,7 +12,7 @@ const COMMANDS = {
 };
 
 app.get("/cm", (req, res) => {
-  const command = COMMANDS[req.query.cmd];
+  const command = COMMANDS[req.query.cmnd];
 
   switch (command) {
     case "on":

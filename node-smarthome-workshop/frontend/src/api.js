@@ -24,27 +24,78 @@ export async function updateDevice(deviceId, data) {
   await axios.patch(`${API_URL}/devices/${deviceId}`, data);
 }
 
+export async function updateDeviceState(deviceId, data) {
+  await axios.patch(`${API_URL}/devices/log/${deviceId}`, data);
+}
+
 export async function switchOn(deviceId) {
-  await updateDevice(deviceId, {
+  await updateDeviceState(deviceId, {
     state: "on"
   });
 }
 
 export async function switchOff(deviceId) {
-  await updateDevice(deviceId, {
+  await updateDeviceState(deviceId, {
     state: "off"
   });
 }
 
 export async function getDeviceLog(deviceId) {
-  return [
-    {
-      date: "2018-31-08 16:00:00",
-      action: "On"
-    },
-    {
-      date: "2018-31-08 17:00:00",
-      action: "Off"
-    }
-  ];
+  const response = await axios.get(`${API_URL}/devices/log/${deviceId}`);
+  return response.data;
+}
+
+export async function getGroups() {
+  const response = await axios.get(`${API_URL}/groups`);
+  return response.data;
+}
+
+export async function addGroup(group) {
+  await axios.post(`${API_URL}/groups`, group);
+}
+
+export async function removeGroup(groupId) {
+  await axios.delete(`${API_URL}/groups/${groupId}`);
+}
+
+export async function getGroupById(groupId) {
+  const response = await axios.get(`${API_URL}/groups/${groupId}`);
+  return response.data;
+}
+
+export async function postGroup(data) {
+  return axios.post(`${API_URL}/groups`, data);
+}
+
+export async function updateGroup(groupId, data) {
+  await axios.patch(`${API_URL}/groups/${groupId}`, data);
+}
+
+export async function addDeviceToGroup(groupId, deviceId) {
+  await axios.post(`${API_URL}/groups/${groupId}/addDevice/${deviceId}`);
+}
+
+export async function removeDeviceFromGroup(groupId, deviceId) {
+  await axios.delete(`${API_URL}/groups/${groupId}/removeDevice/${deviceId}`);
+}
+
+export async function updateGroupState(groupId, data) {
+  await axios.patch(`${API_URL}/groups/log/${groupId}`, data);
+}
+
+export async function switchOnGroup(groupId) {
+  await updateGroupState(groupId, {
+    state: "on"
+  });
+}
+
+export async function switchOffGroup(groupId) {
+  await updateGroupState(groupId, {
+    state: "off"
+  });
+}
+
+export async function getGroupLog(groupId) {
+  const response = await axios.get(`${API_URL}/groups/log/${groupId}`);
+  return response.data;
 }
